@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - FlaskSiteBuilder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Header section with navigation bar -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('main.home') }}">Home</a></li>
+                <li><a href="{{ url_for('main.about') }}">About</a></li>
+                <li><a href="{{ url_for('main.contact') }}">Contact</a></li>
+                <li><a href="{{ url_for('main.dashboard') }}" class="active">Dashboard</a></li>
+                <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main content section -->
+    <main>
+        <section class="dashboard-section">
+            <h1>Welcome to Your Dashboard, {{ current_user.username }}</h1>
+            <p>Here you can manage your profile, view your activity, and access personalized features of FlaskSiteBuilder.</p>
+
+            <div class="profile-management">
+                <h2>Profile Management</h2>
+                <ul>
+                    <li><a href="{{ url_for('profile.view') }}">View Profile</a></li>
+                    <li><a href="{{ url_for('profile.edit') }}">Edit Profile</a></li>
+                    <li><a href="{{ url_for('auth.change_password') }}">Change Password</a></li>
+                </ul>
+            </div>
+
+            <div class="activity-overview">
+                <h2>Activity Overview</h2>
+                <ul>
+                    <li><a href="{{ url_for('activity.recent') }}">Recent Activity</a></li>
+                    <li><a href="{{ url_for('activity.stats') }}">Statistics</a></li>
+                </ul>
+            </div>
+
+            <div class="personalized-features">
+                <h2>Personalized Features</h2>
+                <ul>
+                    <li><a href="{{ url_for('features.custom') }}">Custom Features</a></li>
+                    <li><a href="{{ url_for('features.settings') }}">Settings</a></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer section -->
+    <footer>
+        <p>&copy; {{ current_year }} FlaskSiteBuilder. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#">Facebook</a> |
+            <a href="#">Twitter</a> |
+            <a href="#">LinkedIn</a>
+        </div>
+    </footer>
+</body>
+</html>
+

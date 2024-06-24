@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About FlaskSiteBuilder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Header section with navigation bar -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('main.home') }}">Home</a></li>
+                <li><a href="{{ url_for('main.about') }}" class="active">About</a></li>
+                <li><a href="{{ url_for('main.contact') }}">Contact</a></li>
+                {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('main.dashboard') }}">Dashboard</a></li>
+                    <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+                    <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main content section -->
+    <main>
+        <section class="about-section">
+            <h1>About FlaskSiteBuilder</h1>
+            <p>FlaskSiteBuilder is a project template designed to help you start your Flask web development quickly and efficiently. It provides a solid foundation with essential features like user authentication, database integration, and migration support, allowing you to focus on building your unique application features.</p>
+
+            <h2>Key Features</h2>
+            <ul>
+                <li>Comprehensive User Authentication (Login, Registration, Logout)</li>
+                <li>Seamless Database Integration with SQLAlchemy</li>
+                <li>Effortless Database Migrations with Alembic</li>
+                <li>Modular Code Organization with Blueprints</li>
+                <li>Robust Error Handling (404 and 500 pages)</li>
+                <li>Responsive Design with a Basic CSS Template</li>
+            </ul>
+
+            <h2>Technologies Utilized</h2>
+            <ul>
+                <li>Flask - The core web framework</li>
+                <li>Flask-SQLAlchemy - For database interactions</li>
+                <li>Flask-Migrate - For database migrations</li>
+                <li>Flask-Login - For user session management</li>
+                <li>HTML, CSS - For structuring and styling the web pages</li>
+                <li>SQLite - The default database, easily configurable for other databases</li>
+            </ul>
+
+            <h2>Getting Started</h2>
+            <p>Refer to the README file for detailed instructions on setting up and starting your development with FlaskSiteBuilder. We hope this template accelerates your development process and helps you build amazing applications. Happy coding!</p>
+        </section>
+    </main>
+
+    <!-- Footer section -->
+    <footer>
+        <p>&copy; {{ current_year }} FlaskSiteBuilder. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#">Facebook</a> |
+            <a href="#">Twitter</a> |
+            <a href="#">LinkedIn</a>
+        </div>
+    </footer>
+</body>
+</html>
+

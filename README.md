@@ -161,14 +161,22 @@ pytest
 
 This will discover and run all the tests in the `tests/` directory.
 
+## Author
+
+This project was created by Daniel Egbuluese.
+
 ## Contributing
 
 Contributions are welcome! Please fork the repository and create a pull request with your changes. Make sure to update the tests and documentation as needed.
 
-## Author
+## Licence
 
-Name : Daniel Egbuluese
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Contact
+
+f you have any questions, feel free to contact me at danniwide.1981@gmail.com or fidelismicheal12@gmail.com.
 
 ---
 
-This `README.md` provides detailed information about the project setup, structure, and usage, ensuring that your team members and any new contributors have a comprehensive guide to work with.
+This `README.md` provides detailed information about the project setup, structure, and usage, ensuring that any new contributors have a comprehensive guide to work with.
