@@ -1,64 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlaskSiteBuilder - Home</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-    <!-- Header section with navigation bar -->
-    <header>
-        <nav>
-            <ul>
-                <li><a href="{{ url_for('main.home') }}">Home</a></li>
-                <li><a href="{{ url_for('main.about') }}">About</a></li>
-                <li><a href="{{ url_for('main.contact') }}">Contact</a></li>
-                {% if current_user.is_authenticated %}
-                    <li><a href="{{ url_for('main.dashboard') }}">Dashboard</a></li>
-                    <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
-                {% else %}
-                    <li><a href="{{ url_for('auth.login') }}">Login</a></li>
-                    <li><a href="{{ url_for('auth.register') }}">Register</a></li>
-                {% endif %}
-            </ul>
-        </nav>
-    </header>
+{% extends "base.html" %}
 
-    <!-- Main content section -->
-    <main>
-        <section class="hero">
-            <h1>Welcome to FlaskSiteBuilder</h1>
-            <p>This is a template for your Flask project. You can start building your site here.</p>
+{% block title %}Home - FlaskSiteBuilder{% endblock %}
 
-            {% if current_user.is_authenticated %}
-                <p>Hello, {{ current_user.username }}!</p>
-            {% else %}
-                <p>You are not logged in. Please <a href="{{ url_for('auth.login') }}">log in</a> or <a href="{{ url_for('auth.register') }}">register</a>.</p>
-            {% endif %}
-        </section>
+{% block content %}
+<section class="hero">
+    <div class="container">
+        <h1>Welcome to FlaskSiteBuilder</h1>
+        <p>Your one-stop solution for building Flask web applications efficiently and effectively.</p>
 
-        <!-- Placeholder section for future content -->
-        <section class="features">
-            <h2>Features</h2>
-            <ul>
-                <li>Feature 1</li>
-                <li>Feature 2</li>
-                <li>Feature 3</li>
-            </ul>
-        </section>
-    </main>
+        {% if current_user.is_authenticated %}
+            <p>Hello, {{ current_user.username }}! Welcome back to your dashboard.</p>
+            <a href="{{ url_for('main.dashboard') }}" class="btn btn-primary">Go to Dashboard</a>
+        {% else %}
+            <p>You are not logged in. Please <a href="{{ url_for('auth.login') }}">log in</a> or <a href="{{ url_for('auth.register') }}">register</a> to start building your site.</p>
+            <a href="{{ url_for('auth.register') }}" class="btn btn-primary">Register Now</a>
+            <a href="{{ url_for('auth.login') }}" class="btn btn-secondary">Login</a>
+        {% endif %}
+    </div>
+</section>
 
-    <!-- Footer section -->
-    <footer>
-        <p>&copy; {{ current_year }} FlaskSiteBuilder. All rights reserved.</p>
-        <!-- Placeholder for future social media links -->
-        <div class="social-links">
-            <a href="#">Facebook</a> |
-            <a href="#">Twitter</a> |
-            <a href="#">LinkedIn</a>
-        </div>
-    </footer>
-</body>
-</html>
+<section class="features">
+    <div class="container">
+        <h2>Key Features</h2>
+        <ul>
+            <li>Seamless user authentication and registration</li>
+            <li>Easy-to-use dashboard for managing your site</li>
+            <li>Customizable templates and themes</li>
+            <li>Responsive design for all devices</li>
+            <li>Built-in error handling and logging</li>
+        </ul>
+    </div>
+</section>
+
+<section class="call-to-action">
+    <div class="container">
+        <h2>Get Started with FlaskSiteBuilder Today</h2>
+        <p>Join a community of developers and start building your Flask projects effortlessly.</p>
+        {% if not current_user.is_authenticated %}
+            <a href="{{ url_for('auth.register') }}" class="btn btn-primary">Sign Up Now</a>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
 

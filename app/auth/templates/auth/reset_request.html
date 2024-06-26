@@ -1,64 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Request Password Reset - FlaskSiteBuilder</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-    <!-- Header section with navigation bar -->
-    <header>
-        <nav>
-            <ul>
-                <li><a href="{{ url_for('main.home') }}">Home</a></li>
-                <li><a href="{{ url_for('main.about') }}">About</a></li>
-                <li><a href="{{ url_for('main.contact') }}">Contact</a></li>
-                {% if current_user.is_authenticated %}
-                    <li><a href="{{ url_for('main.dashboard') }}">Dashboard</a></li>
-                    <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
-                {% else %}
-                    <li><a href="{{ url_for('auth.login') }}">Login</a></li>
-                    <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+{% extends "base.html" %}
+
+{% block title %}Password Reset Request - FlaskSiteBuilder{% endblock %}
+
+{% block content %}
+<section class="auth-section">
+    <div class="container">
+        <h1>Reset Your Password</h1>
+        <p>Forgot your password? Don't worry! Enter your email address below, and we'll send you a link to reset it.</p>
+
+        <form method="POST" action="{{ url_for('auth.reset_request') }}" class="form-reset-request" aria-label="Password Reset Request Form">
+            {{ form.hidden_tag() }}
+            
+            <div class="form-group">
+                {{ form.email.label(class="form-label", title="Enter your email address") }}
+                {{ form.email(class="form-control", placeholder="Enter your email address", aria-describedby="emailHelp") }}
+                <small id="emailHelp" class="form-text text-muted">We will send a password reset link to this email address. Make sure to check your spam folder as well.</small>
+                {% if form.email.errors %}
+                    <div class="form-error" role="alert">{{ form.email.errors[0] }}</div>
                 {% endif %}
-            </ul>
-        </nav>
-    </header>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-block">Request Password Reset</button>
+        </form>
 
-    <!-- Main content section for password reset request -->
-    <main>
-        <section class="auth-section">
-            <h1>Request Password Reset</h1>
-            <p>Enter your email address below to receive a password reset link.</p>
-            <form method="POST" action="{{ url_for('auth.reset_request') }}">
-                {{ form.hidden_tag() }}
-
-                <!-- Email field -->
-                <div class="form-group">
-                    {{ form.email.label(class="form-label") }}
-                    {{ form.email(class="form-control", placeholder="Enter your email address") }}
-                    {% if form.email.errors %}
-                        <div class="error">{{ form.email.errors[0] }}</div>
-                    {% endif %}
-                </div>
-
-                <!-- Submit button -->
-                <div class="form-group">
-                    {{ form.submit(class="btn btn-primary btn-block") }}
-                </div>
-            </form>
-        </section>
-    </main>
-
-    <!-- Footer section -->
-    <footer>
-        <p>&copy; {{ current_year }} FlaskSiteBuilder. All rights reserved.</p>
-        <div class="social-links">
-            <a href="#">Facebook</a> |
-            <a href="#">Twitter</a> |
-            <a href="#">LinkedIn</a>
+        <div class="alternative-options">
+            <p class="alternative-option">
+                Remembered your password? <a href="{{ url_for('auth.login') }}">Login here</a>.
+            </p>
+            
+            <p class="alternative-option">
+                Don't have an account? <a href="{{ url_for('auth.register') }}">Register here</a>.
+            </p>
         </div>
-    </footer>
-</body>
-</html>
+    </div>
+</section>
+{% endblock %}
 

@@ -1,75 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - FlaskSiteBuilder</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-    <!-- Header section with navigation bar -->
-    <header>
-        <nav>
-            <ul>
-                <li><a href="{{ url_for('main.home') }}">Home</a></li>
-                <li><a href="{{ url_for('main.about') }}">About</a></li>
-                <li><a href="{{ url_for('main.contact') }}">Contact</a></li>
-                {% if current_user.is_authenticated %}
-                    <li><a href="{{ url_for('main.dashboard') }}">Dashboard</a></li>
-                    <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
-                {% else %}
-                    <li><a href="{{ url_for('auth.login') }}" class="active">Login</a></li>
-                    <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+{% extends "base.html" %}
+
+{% block title %}Login - FlaskSiteBuilder{% endblock %}
+
+{% block content %}
+<section class="auth-section">
+    <div class="container">
+        <h1>Login to Your Account</h1>
+        <p>Welcome back! Please login to access your dashboard and manage your account.</p>
+
+        <form method="POST" action="{{ url_for('auth.login') }}">
+            {{ form.hidden_tag() }}
+            
+            <div class="form-group">
+                {{ form.email.label(class="form-label") }}
+                {{ form.email(class="form-control", placeholder="Enter your email") }}
+                {% if form.email.errors %}
+                    <div class="form-error">{{ form.email.errors[0] }}</div>
                 {% endif %}
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Main content section for login -->
-    <main>
-        <section class="auth-section">
-            <h1>Login to FlaskSiteBuilder</h1>
-            <p>Access your account by entering your credentials below.</p>
-            <form method="POST" action="{{ url_for('auth.login') }}">
-                {{ form.hidden_tag() }}
-                
-                <!-- Email field -->
-                <div class="form-group">
-                    {{ form.email.label }}
-                    {{ form.email(class="form-control") }}
-                    {% for error in form.email.errors %}
-                        <span class="error">{{ error }}</span>
-                    {% endfor %}
-                </div>
-                
-                <!-- Password field -->
-                <div class="form-group">
-                    {{ form.password.label }}
-                    {{ form.password(class="form-control") }}
-                    {% for error in form.password.errors %}
-                        <span class="error">{{ error }}</span>
-                    {% endfor %}
-                </div>
-                
-                <!-- Submit button -->
-                <div class="form-group">
-                    {{ form.submit(class="btn btn-primary") }}
-                </div>
-                
-                <p class="register-link">Don't have an account? <a href="{{ url_for('auth.register') }}">Register here</a>.</p>
-            </form>
-        </section>
-    </main>
-
-    <!-- Footer section -->
-    <footer>
-        <p>&copy; {{ current_year }} FlaskSiteBuilder. All rights reserved.</p>
-        <div class="social-links">
-            <a href="#">Facebook</a> |
-            <a href="#">Twitter</a> |
-            <a href="#">LinkedIn</a>
+            </div>
+            
+            <div class="form-group">
+                {{ form.password.label(class="form-label") }}
+                {{ form.password(class="form-control", placeholder="Enter your password") }}
+                {% if form.password.errors %}
+                    <div class="form-error">{{ form.password.errors[0] }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group form-check">
+                {{ form.remember(class="form-check-input") }}
+                {{ form.remember.label(class="form-check-label") }}
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
+        </form>
+        
+        <div class="alternative-options">
+            <p>Don't have an account? <a href="{{ url_for('auth.register') }}">Register here</a>.</p>
+            <p>Forgot your password? <a href="{{ url_for('auth.reset_request') }}">Reset it here</a>.</p>
         </div>
-    </footer>
-</body>
-</html>
+    </div>
+</section>
+{% endblock %}
 

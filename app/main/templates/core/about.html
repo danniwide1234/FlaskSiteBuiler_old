@@ -1,70 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About FlaskSiteBuilder</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-    <!-- Header section with navigation bar -->
-    <header>
-        <nav>
-            <ul>
-                <li><a href="{{ url_for('main.home') }}">Home</a></li>
-                <li><a href="{{ url_for('main.about') }}" class="active">About</a></li>
-                <li><a href="{{ url_for('main.contact') }}">Contact</a></li>
-                {% if current_user.is_authenticated %}
-                    <li><a href="{{ url_for('main.dashboard') }}">Dashboard</a></li>
-                    <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
-                {% else %}
-                    <li><a href="{{ url_for('auth.login') }}">Login</a></li>
-                    <li><a href="{{ url_for('auth.register') }}">Register</a></li>
-                {% endif %}
-            </ul>
-        </nav>
-    </header>
+{% extends "base.html" %}
 
-    <!-- Main content section -->
-    <main>
-        <section class="about-section">
-            <h1>About FlaskSiteBuilder</h1>
-            <p>FlaskSiteBuilder is a project template designed to help you start your Flask web development quickly and efficiently. It provides a solid foundation with essential features like user authentication, database integration, and migration support, allowing you to focus on building your unique application features.</p>
+{% block title %}About Us - FlaskSiteBuilder{% endblock %}
 
-            <h2>Key Features</h2>
-            <ul>
-                <li>Comprehensive User Authentication (Login, Registration, Logout)</li>
-                <li>Seamless Database Integration with SQLAlchemy</li>
-                <li>Effortless Database Migrations with Alembic</li>
-                <li>Modular Code Organization with Blueprints</li>
-                <li>Robust Error Handling (404 and 500 pages)</li>
-                <li>Responsive Design with a Basic CSS Template</li>
-            </ul>
+{% block content %}
+<section class="about">
+    <div class="container">
+        <h1>About FlaskSiteBuilder</h1>
+        <p>FlaskSiteBuilder is designed to streamline the development process for Flask applications, providing a robust starting point with built-in features and a modular architecture.</p>
+        
+        <h2>Our Vision</h2>
+        <p>We envision a world where developers can focus more on creating innovative solutions rather than setting up the basics. FlaskSiteBuilder aims to be the go-to template for kickstarting Flask projects with best practices in mind.</p>
 
-            <h2>Technologies Utilized</h2>
-            <ul>
-                <li>Flask - The core web framework</li>
-                <li>Flask-SQLAlchemy - For database interactions</li>
-                <li>Flask-Migrate - For database migrations</li>
-                <li>Flask-Login - For user session management</li>
-                <li>HTML, CSS - For structuring and styling the web pages</li>
-                <li>SQLite - The default database, easily configurable for other databases</li>
-            </ul>
+        <h2>Core Features</h2>
+        <ul>
+            <li>Comprehensive user authentication (login, registration, password reset)</li>
+            <li>Modular and scalable architecture</li>
+            <li>Customizable templates with a responsive design</li>
+            <li>Integrated error handling and custom error pages</li>
+            <li>Pre-configured extensions like SQLAlchemy, Flask-Migrate, Flask-Mail, and Flask-Bootstrap</li>
+            <li>Ready-to-use scripts for development and production</li>
+        </ul>
 
-            <h2>Getting Started</h2>
-            <p>Refer to the README file for detailed instructions on setting up and starting your development with FlaskSiteBuilder. We hope this template accelerates your development process and helps you build amazing applications. Happy coding!</p>
-        </section>
-    </main>
-
-    <!-- Footer section -->
-    <footer>
-        <p>&copy; {{ current_year }} FlaskSiteBuilder. All rights reserved.</p>
-        <div class="social-links">
-            <a href="#">Facebook</a> |
-            <a href="#">Twitter</a> |
-            <a href="#">LinkedIn</a>
-        </div>
-    </footer>
-</body>
-</html>
+        <h2>Our Team</h2>
+        <p>Our team comprises experienced developers passionate about Flask and open-source projects. We are committed to maintaining FlaskSiteBuilder and continuously improving it based on user feedback.</p>
+        
+        <h2>Get Involved</h2>
+        <p>We welcome contributions from the community. Whether it's reporting issues, suggesting features, or submitting pull requests, your input helps us make FlaskSiteBuilder better for everyone.</p>
+    </div>
+</section>
+{% endblock %}
 

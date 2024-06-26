@@ -1,93 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - FlaskSiteBuilder</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-    <!-- Header section with navigation bar -->
-    <header>
-        <nav>
-            <ul>
-                <li><a href="{{ url_for('main.home') }}">Home</a></li>
-                <li><a href="{{ url_for('main.about') }}">About</a></li>
-                <li><a href="{{ url_for('main.contact') }}">Contact</a></li>
-                {% if current_user.is_authenticated %}
-                    <li><a href="{{ url_for('main.dashboard') }}">Dashboard</a></li>
-                    <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
-                {% else %}
-                    <li><a href="{{ url_for('auth.login') }}">Login</a></li>
-                    <li><a href="{{ url_for('auth.register') }}" class="active">Register</a></li>
+{% extends "base.html" %}
+
+{% block title %}Register - FlaskSiteBuilder{% endblock %}
+
+{% block content %}
+<section class="auth-section">
+    <div class="container">
+        <h1>Create Your FlaskSiteBuilder Account</h1>
+        <p>Join FlaskSiteBuilder today and unlock the full potential of your Flask projects.</p>
+
+        <form method="POST" action="{{ url_for('auth.register') }}" class="form-register">
+            {{ form.hidden_tag() }}
+            
+            <div class="form-group">
+                {{ form.username.label(class="form-label") }}
+                {{ form.username(class="form-control", placeholder="Choose a username") }}
+                {% if form.username.errors %}
+                    <div class="form-error">{{ form.username.errors[0] }}</div>
                 {% endif %}
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Main content section for registration -->
-    <main>
-        <section class="auth-section">
-            <h1>Create Your Account</h1>
-            <p>Join FlaskSiteBuilder today and start building your project!</p>
-            <form method="POST" action="{{ url_for('auth.register') }}">
-                {{ form.hidden_tag() }}
-                
-                <!-- Username field -->
-                <div class="form-group">
-                    {{ form.username.label }}
-                    {{ form.username(class="form-control") }}
-                    {% if form.username.errors %}
-                        <div class="error">{{ form.username.errors[0] }}</div>
-                    {% endif %}
-                </div>
-                
-                <!-- Email field -->
-                <div class="form-group">
-                    {{ form.email.label }}
-                    {{ form.email(class="form-control") }}
-                    {% if form.email.errors %}
-                        <div class="error">{{ form.email.errors[0] }}</div>
-                    {% endif %}
-                </div>
-                
-                <!-- Password field -->
-                <div class="form-group">
-                    {{ form.password.label }}
-                    {{ form.password(class="form-control") }}
-                    {% if form.password.errors %}
-                        <div class="error">{{ form.password.errors[0] }}</div>
-                    {% endif %}
-                </div>
-                
-                <!-- Confirm Password field -->
-                <div class="form-group">
-                    {{ form.confirm_password.label }}
-                    {{ form.confirm_password(class="form-control") }}
-                    {% if form.confirm_password.errors %}
-                        <div class="error">{{ form.confirm_password.errors[0] }}</div>
-                    {% endif %}
-                </div>
-                
-                <!-- Submit button -->
-                <div class="form-group">
-                    {{ form.submit(class="btn btn-primary") }}
-                </div>
-                
-                <p class="login-link">Already have an account? <a href="{{ url_for('auth.login') }}">Login here</a>.</p>
-            </form>
-        </section>
-    </main>
-
-    <!-- Footer section -->
-    <footer>
-        <p>&copy; {{ current_year }} FlaskSiteBuilder. All rights reserved.</p>
-        <div class="social-links">
-            <a href="#">Facebook</a> |
-            <a href="#">Twitter</a> |
-            <a href="#">LinkedIn</a>
+            </div>
+            
+            <div class="form-group">
+                {{ form.email.label(class="form-label") }}
+                {{ form.email(class="form-control", placeholder="Enter your email address") }}
+                {% if form.email.errors %}
+                    <div class="form-error">{{ form.email.errors[0] }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                {{ form.password.label(class="form-label") }}
+                {{ form.password(class="form-control", placeholder="Create a password") }}
+                {% if form.password.errors %}
+                    <div class="form-error">{{ form.password.errors[0] }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                {{ form.confirm_password.label(class="form-label") }}
+                {{ form.confirm_password(class="form-control", placeholder="Confirm your password") }}
+                {% if form.confirm_password.errors %}
+                    <div class="form-error">{{ form.confirm_password.errors[0] }}</div>
+                {% endif %}
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+        </form>
+        
+        <div class="alternative-options">
+            <p>Already have an account? <a href="{{ url_for('auth.login') }}">Log in here</a>.</p>
         </div>
-    </footer>
-</body>
-</html>
+    </div>
+</section>
+{% endblock %}
 
