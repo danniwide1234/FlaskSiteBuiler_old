@@ -7,8 +7,13 @@
     <div class="container text-center">
         <h1 class="error-title">500 - Server Error</h1>
         <p class="error-message">Oops! Something went wrong on our end. We're working to fix it as soon as possible.</p>
+
+        <div class="error-image">
+            <img src="{{ url_for('static', filename='images/500.jpg') }}" alt="500 Server Error">
+        </div>
+
         <p class="error-suggestion">You can try the following options:</p>
-        
+
         <ul class="error-links list-inline">
             <li class="list-inline-item"><a href="{{ url_for('main.home') }}" class="btn btn-link">Home</a></li>
             <li class="list-inline-item"><a href="{{ url_for('main.about') }}" class="btn btn-link">About Us</a></li>
@@ -20,7 +25,7 @@
                 <li class="list-inline-item"><a href="{{ url_for('auth.register') }}" class="btn btn-link">Register</a></li>
             {% endif %}
         </ul>
-        
+
         <p>If the problem persists, please <a href="{{ url_for('main.contact') }}">let us know</a>.</p>
         <p class="return-home"><a href="{{ url_for('main.home') }}" class="btn btn-primary">Return to Home</a></p>
     </div>

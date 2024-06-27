@@ -8,9 +8,13 @@
         <h1>Login to Your Account</h1>
         <p>Welcome back! Please login to access your dashboard and manage your account.</p>
 
+        <div class="auth-image">
+            <img src="{{ url_for('static', filename='images/login.jpg') }}" alt="User Login">
+        </div>
+
         <form method="POST" action="{{ url_for('auth.login') }}">
             {{ form.hidden_tag() }}
-            
+
             <div class="form-group">
                 {{ form.email.label(class="form-label") }}
                 {{ form.email(class="form-control", placeholder="Enter your email") }}
@@ -18,7 +22,7 @@
                     <div class="form-error">{{ form.email.errors[0] }}</div>
                 {% endif %}
             </div>
-            
+
             <div class="form-group">
                 {{ form.password.label(class="form-label") }}
                 {{ form.password(class="form-control", placeholder="Enter your password") }}
@@ -26,15 +30,15 @@
                     <div class="form-error">{{ form.password.errors[0] }}</div>
                 {% endif %}
             </div>
-            
+
             <div class="form-group form-check">
                 {{ form.remember(class="form-check-input") }}
                 {{ form.remember.label(class="form-check-label") }}
             </div>
-            
+
             <button type="submit" class="btn btn-primary btn-block">Login</button>
         </form>
-        
+
         <div class="alternative-options">
             <p>Don't have an account? <a href="{{ url_for('auth.register') }}">Register here</a>.</p>
             <p>Forgot your password? <a href="{{ url_for('auth.reset_request') }}">Reset it here</a>.</p>

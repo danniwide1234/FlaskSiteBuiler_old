@@ -13,51 +13,95 @@ FlaskSiteBuilder/
 │   ├── auth/
 │   │   ├── __init__.py
 │   │   ├── forms.py
-│   │   ├── models.py
-│   │   ├── views.py
-│   │   └── validators.py
-│   ├── core/
+│   │   ├── routes.py
+│   │   ├── validators.py
+│   │   └── templates/
+│   │       └── auth/
+│   │           ├── login.html
+│   │           ├── register.html
+│   │           ├── reset_password.html
+│   │           └── reset_request.html
+│   │
+│   ├── main/
 │   │   ├── __init__.py
-│   │   ├── models.py
-│   │   ├── services.py
-│   │   └── views.py
-│   ├── templates/
-│   │   ├── base.html
-│   │   ├── auth/
-│   │   │   ├── login.html
-│   │   │   └── register.html
-│   │   └── core/
-│   │       └── index.html
+│   │   ├── routes.py
+│   │   └── templates/
+│   │       └── core/
+│   │           ├── index.html
+│   │           ├── about.html
+│   │           ├── dashboard.html
+│   │           └── contact.html
+│   │
 │   ├── static/
 │   │   ├── css/
 │   │   │   └── styles.css
-│   │   ├── js/
-│   │   │   └── script.js
+│   │   ├── fonts/
+│   │   │   ├── Roboto-BlackItalic.ttf
+│   │   │   ├── Roboto-BoldItalic.ttf
+│   │   │   ├── Roboto-Italic.ttf
+│   │   │   ├── Roboto-Light.ttf
+│   │   │   ├── Roboto-Medium.ttf
+│   │   │   ├── Roboto-ThinItalic.ttf
+│   │   │   ├── Roboto-Black.ttf
+│   │   │   ├── Roboto-Bold.ttf
+│   │   │   ├── Roboto-LightItalic.ttf
+│   │   │   ├── Roboto-MediumItalic.ttf
+│   │   │   ├── Roboto-Regular.ttf
+│   │   │   └── Roboto-Thin.ttf
 │   │   ├── images/
-│   │   └── fonts/
+│   │   │   ├── hero.jpg
+│   │   │   ├── about.jpg
+│   │   │   ├── contact.jpg
+│   │   │   ├── feature1.jpg
+│   │   │   ├── feature2.jpg
+│   │   │   ├── feature3.jpg
+│   │   │   ├── reset_password.jpg
+│   │   │   ├── login.jpg
+│   │   │   ├── register.jpg
+│   │   │   ├── 404.jpg
+│   │   │   └── 500.jpg
+│   │   └── js/
+│   │       └── scripts.js
+│   │
+│   ├── templates/
+│   │   ├── base.html
+│   │   └── errors/
+│   │       ├── 404.html
+│   │       └── 500.html
+│   │
 │   ├── __init__.py
-│   ├── extensions.py
-│   ├── routes.py
 │   ├── config.py
-│   └── utils.py
+│   ├── extensions.py
+│   ├── models.py
+│   ├── utils.py
+│   └── tests/
+│       ├── __init__.py
+│       ├── test_auth.py
+│       ├── test_main.py
+│       ├── test_models.py
+│       └── test_config.py
 │
 ├── migrations/
-│   └── ...
-│
-├── tests/
-│   ├── test_auth.py
-│   ├── test_core.py
-│   └── conftest.py
+│   ├── env.py
+│   ├── alembic.ini
+│   ├── README
+│   ├── script.py.mako
+│   └── versions/
+│       ├── 1234567890ab_add_user_table.py
+│       └── 0987654321cd_add_password_reset_table.py
 │
 ├── instance/
-│   └── config.py
+│   └── .env
 │
-├── config.py
-├── README.md
+├── scripts/
+│   ├── run.sh
+│   └── other-scripts.sh
+│
+├── .flaskenv
+├── .gitignore
 ├── requirements.txt
 ├── run.py
-├── Dockerfile
-└── .env
+└── README.md
 ```
 
 ## Setup and Installation
@@ -135,10 +179,10 @@ The application will be available at `http://127.0.0.1:5000`.
 
 ## Project Structure Details
 
-- **app/auth/**: Contains the authentication module with forms, models, views, and validators.
-- **app/core/**: Contains the core application logic, including models, services, and views.
-- **app/templates/**: HTML templates for the application.
+- **app/auth/**: Contains the authentication module with forms, routes, validators, and templates.
+- **app/main/**: Contains the main application logic with routes and templates.
 - **app/static/**: Static files (CSS, JavaScript, images, fonts).
+- **app/templates/**: HTML templates for the application.
 - **app/extensions.py**: Initialization of Flask extensions (e.g., SQLAlchemy, Flask-Migrate, Flask-Login).
 - **app/routes.py**: Blueprint registration and route definitions.
 - **app/config.py**: Application configuration.
@@ -169,13 +213,13 @@ This project was created by Daniel Egbuluese.
 
 Contributions are welcome! Please fork the repository and create a pull request with your changes. Make sure to update the tests and documentation as needed.
 
-## Licence
+## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Contact
 
-f you have any questions, feel free to contact me at danniwide.1981@gmail.com or fidelismicheal12@gmail.com.
+If you have any questions, feel free to contact me at danniwide.1981@gmail.com or fidelismicheal12@gmail.com.
 
 ---
 

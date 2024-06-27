@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base.html' %}
 
 {% block title %}Register - FlaskSiteBuilder{% endblock %}
 
@@ -8,9 +8,13 @@
         <h1>Create Your FlaskSiteBuilder Account</h1>
         <p>Join FlaskSiteBuilder today and unlock the full potential of your Flask projects.</p>
 
+        <div class="auth-image">
+            <img src="{{ url_for('static', filename='images/register.jpg') }}" alt="User Registration">
+        </div>
+
         <form method="POST" action="{{ url_for('auth.register') }}" class="form-register">
             {{ form.hidden_tag() }}
-            
+
             <div class="form-group">
                 {{ form.username.label(class="form-label") }}
                 {{ form.username(class="form-control", placeholder="Choose a username") }}
@@ -18,7 +22,7 @@
                     <div class="form-error">{{ form.username.errors[0] }}</div>
                 {% endif %}
             </div>
-            
+
             <div class="form-group">
                 {{ form.email.label(class="form-label") }}
                 {{ form.email(class="form-control", placeholder="Enter your email address") }}
@@ -26,7 +30,7 @@
                     <div class="form-error">{{ form.email.errors[0] }}</div>
                 {% endif %}
             </div>
-            
+
             <div class="form-group">
                 {{ form.password.label(class="form-label") }}
                 {{ form.password(class="form-control", placeholder="Create a password") }}
@@ -34,7 +38,7 @@
                     <div class="form-error">{{ form.password.errors[0] }}</div>
                 {% endif %}
             </div>
-            
+
             <div class="form-group">
                 {{ form.confirm_password.label(class="form-label") }}
                 {{ form.confirm_password(class="form-control", placeholder="Confirm your password") }}
@@ -42,10 +46,10 @@
                     <div class="form-error">{{ form.confirm_password.errors[0] }}</div>
                 {% endif %}
             </div>
-            
+
             <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
         </form>
-        
+
         <div class="alternative-options">
             <p>Already have an account? <a href="{{ url_for('auth.login') }}">Log in here</a>.</p>
         </div>

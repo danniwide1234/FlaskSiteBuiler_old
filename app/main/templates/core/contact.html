@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - FlaskSiteBuilder{% endblock %}
+
+{% block content %}
+<section class="contact">
+    <div class="container">
+        <h1>Contact Us</h1>
+        <p>If you have any questions or need support, please reach out to us using the form below.</p>
+
+        <div class="contact-image">
+            <img src="{{ url_for('static', filename='images/contact.jpg') }}" alt="Contact Us">
+        </div>
+
+        <form method="POST" action="{{ url_for('main.contact') }}">
+            {{ form.hidden_tag() }}
+            
+            <div class="form-group">
+                {{ form.name.label(class="form-label") }}
+                {{ form.name(class="form-control", placeholder="Your Name") }}
+                {% if form.name.errors %}
+                    <div class="form-error">{{ form.name.errors[0] }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                {{ form.email.label(class="form-label") }}
+                {{ form.email(class="form-control", placeholder="Your Email") }}
+                {% if form.email.errors %}
+                    <div class="form-error">{{ form.email.errors[0] }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                {{ form.message.label(class="form-label") }}
+                {{ form.message(class="form-control", placeholder="Your Message") }}
+                {% if form.message.errors %}
+                    <div class="form-error">{{ form.message.errors[0] }}</div>
+                {% endif %}
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+    </div>
+</section>
+{% endblock %}
+

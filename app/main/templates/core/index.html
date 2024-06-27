@@ -5,6 +5,7 @@
 {% block content %}
 <section class="hero">
     <div class="container">
+        <img src="{{ url_for('static', filename='images/hero.jpg') }}" alt="Welcome to FlaskSiteBuilder" class="hero-image">
         <h1>Welcome to FlaskSiteBuilder</h1>
         <p>Your one-stop solution for building Flask web applications efficiently and effectively.</p>
 
@@ -22,13 +23,23 @@
 <section class="features">
     <div class="container">
         <h2>Key Features</h2>
-        <ul>
-            <li>Seamless user authentication and registration</li>
-            <li>Easy-to-use dashboard for managing your site</li>
-            <li>Customizable templates and themes</li>
-            <li>Responsive design for all devices</li>
-            <li>Built-in error handling and logging</li>
-        </ul>
+        <div class="feature-list">
+            <div class="feature-item">
+                <img src="{{ url_for('static', filename='images/feature1.jpg') }}" alt="Seamless user authentication and registration">
+                <h3>Seamless Authentication</h3>
+                <p>Effortlessly manage user authentication and registration with built-in support for secure logins.</p>
+            </div>
+            <div class="feature-item">
+                <img src="{{ url_for('static', filename='images/feature2.jpg') }}" alt="Easy-to-use dashboard">
+                <h3>User-friendly Dashboard</h3>
+                <p>Utilize an intuitive dashboard for managing your site and accessing essential tools.</p>
+            </div>
+            <div class="feature-item">
+                <img src="{{ url_for('static', filename='images/feature3.jpg') }}" alt="Customizable templates and themes">
+                <h3>Customizable Templates</h3>
+                <p>Create a unique look and feel for your site with customizable templates and themes.</p>
+            </div>
+        </div>
     </div>
 </section>
 

@@ -8,9 +8,13 @@
         <h1>Reset Your Password</h1>
         <p>Forgot your password? Don't worry! Enter your email address below, and we'll send you a link to reset it.</p>
 
+        <div class="auth-image">
+            <img src="{{ url_for('static', filename='images/reset_password.jpg') }}" alt="Password Reset Request">
+        </div>
+
         <form method="POST" action="{{ url_for('auth.reset_request') }}" class="form-reset-request" aria-label="Password Reset Request Form">
             {{ form.hidden_tag() }}
-            
+
             <div class="form-group">
                 {{ form.email.label(class="form-label", title="Enter your email address") }}
                 {{ form.email(class="form-control", placeholder="Enter your email address", aria-describedby="emailHelp") }}
@@ -19,7 +23,7 @@
                     <div class="form-error" role="alert">{{ form.email.errors[0] }}</div>
                 {% endif %}
             </div>
-            
+
             <button type="submit" class="btn btn-primary btn-block">Request Password Reset</button>
         </form>
 
@@ -27,7 +31,7 @@
             <p class="alternative-option">
                 Remembered your password? <a href="{{ url_for('auth.login') }}">Login here</a>.
             </p>
-            
+
             <p class="alternative-option">
                 Don't have an account? <a href="{{ url_for('auth.register') }}">Register here</a>.
             </p>

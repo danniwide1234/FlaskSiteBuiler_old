@@ -7,7 +7,9 @@
     <div class="container">
         <h1>Welcome to Your Dashboard, {{ current_user.username }}!</h1>
         <p>Manage your account, view your progress, and access exclusive features here.</p>
-        
+
+        <img src="{{ url_for('static', filename='images/feature1.jpg') }}" alt="Dashboard Feature" class="dashboard-image">
+
         <div class="dashboard-sections">
             <!-- Account Information Section -->
             <div class="section">

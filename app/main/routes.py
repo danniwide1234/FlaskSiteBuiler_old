@@ -20,6 +20,11 @@ def about():
 def dashboard():
     return render_template('core/dashboard.html', name=current_user.username)
 
+# Contact route
+@main_bp.route('/contact')
+def contact():
+    return render_template('core/contact.html')
+
 # Error handlers
 @main_bp.errorhandler(404)
 def not_found_error(error):

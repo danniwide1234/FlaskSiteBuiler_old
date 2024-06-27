@@ -74,6 +74,7 @@ header nav ul li a.active, header nav ul li a:hover {
     margin: 0;
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .features ul li {
@@ -82,6 +83,14 @@ header nav ul li a.active, header nav ul li a:hover {
     border-radius: 5px;
     width: 30%;
     text-align: center;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.features ul li img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
 }
 
 /* Authentication Forms */
@@ -164,6 +173,9 @@ header nav ul li a.active, header nav ul li a:hover {
 .error-section {
     text-align: center;
     padding: 50px 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .error-title {
@@ -196,6 +208,13 @@ header nav ul li a.active, header nav ul li a:hover {
 
 .return-home {
     margin-top: 30px;
+}
+
+/* Error Images */
+.error-section img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
 }
 
 /* Footer Styles */
