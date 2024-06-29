@@ -1,28 +1,21 @@
-import os
-import sys
+import logging
 from logging.config import fileConfig
-
-from sqlalchemy import engine_from_config
-from sqlalchemy import pool
+from flask import current_app
 from alembic import context
+from sqlalchemy import engine_from_config, pool
+from app import models
 
-# Load the Alembic config and the .ini file
 config = context.config
+fileConfig(config.config_file_name)
+logger = logging.getLogger('alembic.env')
 
-# Set up Python logging using the configuration in logging.cfg
-fileConfig(os.path.join(os.path.dirname(__file__), 'logging.cfg'))
+target_metadata = current_app.extensions['migrate'].db.metadata
 
-# Import your app and models here
-from app import create_app, db
-from app.models import User  # Ensure to import all your models
-
-app = create_app()
-with app.app_context():
-    target_metadata = db.metadata
+def get_url():
+    return current_app.config['SQLALCHEMY_DATABASE_URI']
 
 def run_migrations_offline():
-    """Run migrations in 'offline' mode."""
-    url = config.get_main_option("sqlalchemy.url")
+    url = get_url()
     context.configure(
         url=url, target_metadata=target_metadata, literal_binds=True
     )
@@ -31,16 +24,15 @@ def run_migrations_offline():
         context.run_migrations()
 
 def run_migrations_online():
-    """Run migrations in 'online' mode."""
     connectable = engine_from_config(
         config.get_section(config.config_ini_section),
-        prefix="sqlalchemy.",
-        poolclass=pool.NullPool,
-    )
+        prefix='sqlalchemy.',
+        poolclass=pool.NullPool)
 
     with connectable.connect() as connection:
         context.configure(
-            connection=connection, target_metadata=target_metadata
+            connection=connection,
+            target_metadata=target_metadata
         )
 
         with context.begin_transaction():

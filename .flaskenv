@@ -1,5 +1,3 @@
-# .flaskenv
-FLASK_APP=app:create_app
+FLASK_APP=run.py
 FLASK_ENV=development
-FLASK_DEBUG=1
 

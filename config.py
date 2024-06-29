@@ -1,3 +1,5 @@
+# app/config.py
+
 import os
 from dotenv import load_dotenv
 
@@ -14,6 +16,4 @@ class Config:
     # Debugging and Testing
     DEBUG = os.getenv('DEBUG', 'False').lower() in ('true', '1', 't')
     TESTING = os.getenv('TESTING', 'False').lower() in ('true', '1', 't')
-
-    # Additional configurations can be added here as needed
 
